@@ -11,13 +11,57 @@ import androidx.appcompat.widget.Toolbar;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
+     EditText editTextNombre , editTextPass;
+     Button   buttonIngresar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        //match con la vista
         setContentView(R.layout.activity_main);
+        //match con los widgets
+        editTextNombre = findViewById(R.id.editNombre);
+        editTextPass = findViewById(R.id.editPass);
+        buttonIngresar = findViewById(R.id.btnEntrar);
+
+        buttonIngresar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String nombreUsuario = editTextNombre.getText().toString();
+                String password = editTextPass.getText().toString();
+
+                if (nombreUsuario.isEmpty() || password.isEmpty()) {
+                    //nombre de usuario vacio
+
+                } else {
+                    if (nombreUsuario.equals("mary") && password.equals("1234")) {
+                        //imprimir bienvenido
+                        mensajito("Bienvenido");
+                    } else {
+                        //imprimir datos errones
+                        mensajito("Los datos son erroneos");
+                    }
+                }
+
+                public void mensajito(String mensaje){
+                    Toast.makeText(this, mensaje, Toast.LENGTH_LONG).show();
+                }
+            }
+
+        });
+
+
+
+
+
+
+
+
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
